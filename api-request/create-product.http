@@ -1,0 +1,10 @@
+### Create a product
+POST http://localhost:8085/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "arroz",
+  "price": 3.50,
+  "stock": 5
+}
+###

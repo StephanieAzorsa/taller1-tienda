@@ -1,0 +1,4 @@
+### GET all products
+GET http://localhost:8085/api/v1/products
+
+###
