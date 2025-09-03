@@ -14,7 +14,7 @@ public class ProductMapper {
         productDTO.setPrice(product.getPrice());
         productDTO.setStock(product.getStock());
 
-        return  productDTO;
+        return productDTO;
     }
 
     public static Product toModel(ProductRequestDTO productRequestDTO) {
