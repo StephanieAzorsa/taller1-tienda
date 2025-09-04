@@ -2,6 +2,7 @@ package com.nttdata.productservice.controller;
 
 import com.nttdata.productservice.dto.ProductRequestDTO;
 import com.nttdata.productservice.dto.ProductResponseDTO;
+import com.nttdata.productservice.dto.ProductUpdateRequestDTO;
 import com.nttdata.productservice.dto.QuantityProductRequestDTO;
 import com.nttdata.productservice.service.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +66,13 @@ public class ProductController {
     public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
+    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> updateProduct(
+            @PathVariable String id,
+            @Validated @RequestBody ProductUpdateRequestDTO productRequestDTO) {
+
+        ProductResponseDTO updatedProduct = productService.updateProduct(id, productRequestDTO);
+        return ResponseEntity.ok(updatedProduct);
     }
 }

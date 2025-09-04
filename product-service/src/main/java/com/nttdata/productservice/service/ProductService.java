@@ -4,6 +4,7 @@ import com.nttdata.productservice.Exception.InsufficientStockException;
 import com.nttdata.productservice.Exception.ProductNotFoundException;
 import com.nttdata.productservice.dto.ProductRequestDTO;
 import com.nttdata.productservice.dto.ProductResponseDTO;
+import com.nttdata.productservice.dto.ProductUpdateRequestDTO;
 import com.nttdata.productservice.dto.QuantityProductRequestDTO;
 import com.nttdata.productservice.mapper.ProductMapper;
 import com.nttdata.productservice.model.Product;
@@ -79,5 +80,16 @@ public class ProductService {
         }
         productRepository.deleteById(id);
     }
+    public ProductResponseDTO updateProduct(String id, ProductUpdateRequestDTO productRequestDTO) {
+        // Buscar el producto
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("El producto con ID [" + id + "] no se encontró"));
 
+        // Guardar cambios
+        product.setName(productRequestDTO.getName());
+        product.setPrice(productRequestDTO.getPrice());
+
+        Product updateProduct = productRepository.save(product);
+        return ProductMapper.toDTO(updateProduct);
+    }
 }

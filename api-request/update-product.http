@@ -1,0 +1,9 @@
+### PATCH update product
+ PATCH http://localhost:8085/api/v1/products/d832971d-14f4-41ad-8a9a-21fbe75102cb
+Content-Type: application/json
+
+{
+  "name": "azúcar",
+  "price": 3.50
+}
+###
