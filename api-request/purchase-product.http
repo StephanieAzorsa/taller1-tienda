@@ -1,0 +1,10 @@
+### PUT Purchase product(s)
+
+PUT http://localhost:8085/api/v1/products/32cf7bcf-4b05-4d02-a345-9d7e612e2339/purchase
+Content-Type: application/json
+
+{
+  "countPurchase": 2
+}
+
+###

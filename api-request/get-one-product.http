@@ -1,0 +1,5 @@
+### GET one product
+
+http://localhost:8085/api/v1/products/4b595697-6da2-4371-81e7-920c416243ce
+
+###

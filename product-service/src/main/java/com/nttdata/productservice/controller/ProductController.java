@@ -2,6 +2,7 @@ package com.nttdata.productservice.controller;
 
 import com.nttdata.productservice.dto.ProductRequestDTO;
 import com.nttdata.productservice.dto.ProductResponseDTO;
+import com.nttdata.productservice.dto.QuantityProductRequestDTO;
 import com.nttdata.productservice.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +25,12 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> getProductById(@PathVariable String id) {
+        ProductResponseDTO product = productService.getProductById(id);
+        return ResponseEntity.ok(product);
+    }
+
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(
             @Validated()
@@ -32,5 +39,22 @@ public class ProductController {
         ProductResponseDTO productResponseDTO = productService
                 .createProduct(productRequestDTO);
         return ResponseEntity.ok().body(productResponseDTO);
+    }
+
+    @PutMapping("/{id}/purchase")
+    public ResponseEntity<ProductResponseDTO> purchaseProduct(
+            @PathVariable String id,
+            @Validated @RequestBody QuantityProductRequestDTO purchaseRequestDTO) {
+
+        ProductResponseDTO productResponseDTO = productService
+                .purchaseProduct(id, purchaseRequestDTO);
+
+        return ResponseEntity.ok(productResponseDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
     }
 }

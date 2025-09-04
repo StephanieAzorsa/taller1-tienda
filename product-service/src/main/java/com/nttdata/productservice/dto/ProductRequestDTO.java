@@ -1,9 +1,6 @@
 package com.nttdata.productservice.dto;
 
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +16,7 @@ public class ProductRequestDTO {
     private Double price;
 
     @NotNull(message = "Stock del producto requerido")
+    @Min(value = 0, message = "El stock no puede ser negativo")
     private Integer stock;
 
 }
