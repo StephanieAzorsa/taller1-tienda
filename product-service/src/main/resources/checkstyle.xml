@@ -6,7 +6,7 @@
     <module name="TreeWalker">
         <module name="PackageName">
             <property name="format"
-                      value="com.nttdata.accountservice"/>
+                      value="com.nttdata.productservice"/>
         </module>
         <module name="MethodLength">
             <property name="max" value="50"/>
