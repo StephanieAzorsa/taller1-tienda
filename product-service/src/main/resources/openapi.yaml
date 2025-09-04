@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:8085
+  - url: http://localhost:8085/api/v1
     description: Servidor de desarrollo
 
 tags:
@@ -13,7 +13,7 @@ tags:
     description: Operaciones relacionadas con productos
 
 paths:
-  /Products:
+  /products:
     post:
       tags: [products]
       summary: Crear un nuevo producto
@@ -71,7 +71,7 @@ paths:
 
     put:
       tags: [products]
-      summary: Actualizar stock de un Producto existente
+      summary: Actualizar un Producto existente
       parameters:
         - name: id
           in: path
@@ -115,6 +115,37 @@ paths:
         '404':
           description: Producto no encontrado
 
+  /products/{idProduct}/add-stock:
+    put:
+      tags: [products]
+      summary: Agregar más stock a un producto
+      parameters:
+        - name: idProduct
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - quantity
+              properties:
+                quantity:
+                  type: integer
+                  example: 10
+      responses:
+        '200':
+          description: Stock actualizado exitosamente
+        '400':
+          description: Stock no actualizado
+        '404':
+          description: Producto no encontrado
+
 components:
   schemas:
     ProductRequest:
@@ -131,12 +162,11 @@ components:
           example: Arroz
         stock:
           type: integer
-          maxLength: 100
           example: 12
         price:
-          type: boolean
-          pattern: '^\d{8}$'
-          example: "20.50"
+          type: number
+          format: float
+          example: 20.50
         registeredDate:
           type: string
           format: date
@@ -156,8 +186,13 @@ components:
           type: integer
           example: 12
         price:
-          type: boolean
+          type: number
+          format: float
           example: 12.50
+        registeredDate:
+          type: string
+          format: date
+          example: "2023-10-15"
 
   responses:
     ValidationError:
@@ -167,11 +202,9 @@ components:
           schema:
             type: object
             properties:
-              fieldName:
+              message:
                 type: string
                 example: "El campo de stock debe ser mayor a 0"
-
-
 
     ProductNotFound:
       description: Producto no encontrado
@@ -182,4 +215,4 @@ components:
             properties:
               message:
                 type: string
-                example: "Cliente no encontrado"
+                example: "Producto no encontrado"
