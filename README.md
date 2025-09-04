@@ -18,7 +18,7 @@ Desarrollar un sistema distribuido que permita gestionar productos y operaciones
 
 | Nombre           | GitHub                                                                                                                            | Rol                    | Contribución               |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------|------------------------|----------------------------|
-| Stephanie Azorsa | [![GitHub](https://img.shields.io/badge/GitHub-@StephanieAzorsa-pink?style=flat&logo=github)](https://github.com/StephanieAzorsa) | Desarrolladora Backend |  Crear producto, Compra de producto(s), Eliminar producto    |
-| Angie Loa        | [![GitHub](https://img.shields.io/badge/GitHub-@AngieLoaPacora-pink?style=flat&logo=github)](https://github.com/AngieLoaPacora)   | Desarrolladora Backend |  Actualizar producto |
-| Aracely Coronel  | [![GitHub](https://img.shields.io/badge/GitHub-@jaz123456789-pink?style=flat&logo=github)](https://github.com/jaz123456789)       | Desarrolladora Backend |  Agregar más stock|
-| Andrea Molina    | [![GitHub](https://img.shields.io/badge/GitHub-@Moliinaandy-pink?style=flat&logo=github)](https://github.com/Moliinaandy)         | Desarrolladora Backend | Listar todos lo productos, listar un producto     |
+| Stephanie Azorsa | [![GitHub](https://img.shields.io/badge/GitHub-@StephanieAzorsa-pink?style=flat&logo=github)](https://github.com/StephanieAzorsa) | Desarrolladora Backend |  Crear producto y Compra de producto(s), Eliminar producto    |
+| Angie Loa        | [![GitHub](https://img.shields.io/badge/GitHub-@AngieLoaPacora-pink?style=flat&logo=github)](https://github.com/AngieLoaPacora)   | Desarrolladora Backend |  Actualizar producto y OpenAPI [contract-first] |
+| Aracely Coronel  | [![GitHub](https://img.shields.io/badge/GitHub-@jaz123456789-pink?style=flat&logo=github)](https://github.com/jaz123456789)       | Desarrolladora Backend |  Agregar más stock y conexión a la base de datos|
+| Andrea Molina    | [![GitHub](https://img.shields.io/badge/GitHub-@Moliinaandy-pink?style=flat&logo=github)](https://github.com/Moliinaandy)         | Desarrolladora Backend | Listar todos lo productos, listar un producto y OpenAPI [contract-first]     |
