@@ -1,0 +1,185 @@
+openapi: 3.0.1
+info:
+  title: Products Service API
+  description: Microservicio para gestion de Productos
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8085
+    description: Servidor de desarrollo
+
+tags:
+  - name: products
+    description: Operaciones relacionadas con productos
+
+paths:
+  /Products:
+    post:
+      tags: [products]
+      summary: Crear un nuevo producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '200':
+          description: Producto creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '400':
+          description: Error de validación
+        '500':
+          description: Error interno del servidor
+
+    get:
+      tags: [products]
+      summary: Obtener todos los productos
+      responses:
+        '200':
+          description: Lista de Productos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+
+  /products/{id}:
+    get:
+      tags: [products]
+      summary: Obtener un Producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '404':
+          description: Producto no encontrado
+
+    put:
+      tags: [products]
+      summary: Actualizar stock de un Producto existente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        '200':
+          description: Producto actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductResponse'
+        '400':
+          description: Error de validación o ID duplicado
+        '404':
+          description: Producto no encontrado
+
+    delete:
+      tags: [products]
+      summary: Eliminar un producto
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Producto eliminado exitosamente
+        '400':
+          description: No se puede eliminar - Producto no existente
+        '404':
+          description: Producto no encontrado
+
+components:
+  schemas:
+    ProductRequest:
+      type: object
+      required:
+        - name
+        - price
+        - stock
+        - registeredDate
+      properties:
+        name:
+          type: string
+          maxLength: 100
+          example: Arroz
+        stock:
+          type: integer
+          maxLength: 100
+          example: 12
+        price:
+          type: boolean
+          pattern: '^\d{8}$'
+          example: "20.50"
+        registeredDate:
+          type: string
+          format: date
+          example: "2023-10-15"
+
+    ProductResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        name:
+          type: string
+          example: Arroz
+        stock:
+          type: integer
+          example: 12
+        price:
+          type: boolean
+          example: 12.50
+
+  responses:
+    ValidationError:
+      description: Error de validación
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              fieldName:
+                type: string
+                example: "El campo de stock debe ser mayor a 0"
+
+
+
+    ProductNotFound:
+      description: Producto no encontrado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Cliente no encontrado"
