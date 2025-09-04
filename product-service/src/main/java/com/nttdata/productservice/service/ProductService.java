@@ -40,6 +40,19 @@ public class ProductService {
         return ProductMapper.toDTO(newProduct);
     }
 
+    public ProductResponseDTO addStock(String id,
+                                       QuantityProductRequestDTO quantityProductRequestDTO) {
+
+        int quantity = quantityProductRequestDTO.getQuantity();
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado con ID: " + id));
+
+        product.setStock(product.getStock() + quantity);
+        Product updatedProduct = productRepository.save(product);
+        return ProductMapper.toDTO(updatedProduct);
+    }
+
     public ProductResponseDTO purchaseProduct(String id,
                                               QuantityProductRequestDTO quantityProductRequestDTO) {
 

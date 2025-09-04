@@ -1,0 +1,8 @@
+### GET request to example server
+PUT http://localhost:8085/api/v1/products/2e8ba4c7-d44f-4b6e-b2c2-2957d3a54786/add-stock
+Content-Type: application/json
+
+{
+  "quantity": 2
+}
+###

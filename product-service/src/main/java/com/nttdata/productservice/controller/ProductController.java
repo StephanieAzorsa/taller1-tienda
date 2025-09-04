@@ -31,6 +31,15 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    @PutMapping("/{id}/add-stock")
+    public ResponseEntity<ProductResponseDTO> addStock(
+            @PathVariable String id,
+            @Validated @RequestBody QuantityProductRequestDTO addStockRequestDTO) {
+
+        ProductResponseDTO productResponseDTO = productService.addStock(id, addStockRequestDTO);
+        return ResponseEntity.ok(productResponseDTO);
+    }
+
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(
             @Validated()
